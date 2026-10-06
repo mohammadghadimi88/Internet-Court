@@ -52,6 +52,20 @@ window.addEventListener("unhandledrejection",function(){
   }
 });
 </script>
-<script type="module" src="./src/app.js"></script>
+<script type="module">
+(async function(){
+  try{
+    await import("./src/app.js?v=12");
+  }catch(e){
+    var app=document.getElementById("app");
+    if(app){
+      var box=document.createElement("section");
+      box.className="empty";
+      box.innerHTML="<h2>Internet Court</h2><p>JavaScript module error: "+String(e&&e.message||e).replace(/[<>&"]/g,function(c){return {"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;"}[c]})+"</p>";
+      app.appendChild(box);
+    }
+  }
+})();
+</script>
 </body>
 </html>
