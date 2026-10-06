@@ -1,1 +1,57 @@
-<!doctype html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#181817"><meta name="description" content="Internet Court — Judge real stories and build your reputation."><meta property="og:title" content="Internet Court — You decide"><meta property="og:description" content="Two sides. One verdict. Who is wrong? You be the judge."><link rel="manifest" href="./manifest.webmanifest"><link rel="icon" href="./icon.svg"><title>Internet Court</title><link rel="stylesheet" href="./src/styles.css"></head><body><div id="app"></div><script type="module" src="./src/app.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#181817">
+<meta name="description" content="Internet Court — Judge real stories and build your reputation.">
+<meta property="og:title" content="Internet Court — You decide">
+<meta property="og:description" content="Two sides. One verdict. Who is wrong? You be the judge.">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon.svg">
+<title>Internet Court</title>
+<link rel="stylesheet" href="./src/styles.css">
+</head>
+<body>
+<div id="app">
+<header>
+<a class="brand" href="#/">⚖ Internet Court</a>
+<nav><a href="#/">Cases</a><a href="#/create">Create Case</a><a href="#/profile">Profile</a><a href="#/leaderboard">Leaderboard</a></nav>
+<div class="header-actions"><span class="mode">LOADING</span></div>
+</header>
+<main>
+<section class="hero">
+<span>YOU DECIDE</span>
+<h1>Who is wrong?<br><em>You be the judge.</em></h1>
+<p>Two sides. One verdict. Judge fairly. Build a reputation for good judgment.</p>
+<div class="hero-actions"><a class="btn" href="#/">Judge a Case</a><a class="btn secondary" href="#/create">Submit a Case</a></div>
+</section>
+<section class="empty"><h2>Loading cases…</h2><p>Please wait.</p></section>
+</main>
+<footer>Internet Court · Judge fairly</footer>
+</div>
+<script>
+window.addEventListener("error",function(){
+  var app=document.getElementById("app");
+  if(app && !app.dataset.runtimeError){
+    app.dataset.runtimeError="1";
+    var box=document.createElement("section");
+    box.className="empty";
+    box.innerHTML="<h2>Internet Court</h2><p>The app could not start correctly. Please refresh this page.</p>";
+    app.appendChild(box);
+  }
+});
+window.addEventListener("unhandledrejection",function(){
+  var app=document.getElementById("app");
+  if(app && !app.dataset.runtimeError){
+    app.dataset.runtimeError="1";
+    var box=document.createElement("section");
+    box.className="empty";
+    box.innerHTML="<h2>Internet Court</h2><p>The app could not start correctly. Please refresh this page.</p>";
+    app.appendChild(box);
+  }
+});
+</script>
+<script type="module" src="./src/app.js"></script>
+</body>
+</html>
