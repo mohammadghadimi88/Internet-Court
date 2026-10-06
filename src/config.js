@@ -1,8 +1,1 @@
-// Copy this file to a deployment and replace the placeholders with your Supabase project values.
-// Never put a Supabase service-role key here. Only the public anon key belongs in a browser app.
-export const CONFIG = {
-  supabaseUrl: "",
-  supabaseAnonKey: "",
-  appName: "Internet Court",
-  demoMode: false
-};
+export const CONFIG={supabaseUrl:"https://ablqtgudkzitblnfoqme.supabase.co",supabaseAnonKey:"sb_publishable_rkMdC_5YN-5osTY-HHviBg_-Z36s-sb",appName:"Internet Court",demoMode:false};
