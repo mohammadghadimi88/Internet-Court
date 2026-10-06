@@ -6,7 +6,7 @@ const saveCases=x=>localStorage.setItem(CK,JSON.stringify(x));
 const localUser=()=>JSON.parse(localStorage.getItem(UK)||"null")||{score:72,judged:0,streak:0,votes:{}};
 const saveUser=x=>localStorage.setItem(UK,JSON.stringify(x));
 export const isLive=()=>!!(CONFIG.supabaseUrl&&CONFIG.supabaseAnonKey&&!CONFIG.demoMode);
-async function client(){if(!isLive())return null;if(!load)load=import("https://esm.sh/@supabase/supabase-js@2").then(({createClient})=>sb=createClient(CONFIG.supabaseUrl,CONFIG.supabaseAnonKey));return sb||load}
+async function client(){if(!isLive())return null;if(!load)load=Promise.race([import("https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm").then(({createClient})=>sb=createClient(CONFIG.supabaseUrl,CONFIG.supabaseAnonKey)),new Promise((_,reject)=>setTimeout(()=>reject(new Error("Supabase client load timed out")),12000))]);return sb||load}
 export async function getSession(){const x=await client();if(!x)return{user:null};const r=await x.auth.getSession();return{user:r.data.session?.user||null}}
 export async function signIn(email){const x=await client();return x.auth.signInWithOtp({email,options:{emailRedirectTo:location.href.split("#")[0]}})}
 export async function signOut(){const x=await client();if(x)await x.auth.signOut()}
